@@ -10,6 +10,6 @@ import com.siga.constat.domain.Agence;
 public interface AgenceRepository extends JpaRepository <Agence,Long> {
 	
 	
-	String System = null ;
+	String System = null;
 
 }
