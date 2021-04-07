@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.siga.constat.domain.ChefAgence;
 
 @Repository
-public interface Chef_agenceRepository extends JpaRepository<ChefAgence,Long>{
+public interface ChefAgenceRepository extends JpaRepository<ChefAgence,Long>{
 
 
 }

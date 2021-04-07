@@ -1,5 +1,6 @@
 package com.siga.constat.domain.resource;
 
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -14,15 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.siga.constat.domain.Agence;
+import com.siga.constat.domain.Demande;
 import com.siga.constat.domain.repository.AgenceRepository;
+import com.siga.constat.domain.repository.DemandeRepository;
 
 @RestController
 @RequestMapping("/api")
-public class AgenceResource {
+public class DemandeResource {
 
 
 @Autowired
-private AgenceRepository agenceRepository;
+private DemandeRepository demandeRepository;
 
 
 /*
@@ -34,8 +37,8 @@ private AgenceRepository agenceRepository;
 * */
 
 
- @PostMapping("/agence")
- public Agence addAgence(@RequestBody Agence agence)
+ @PostMapping("/demande")
+ public Demande addDemande(@RequestBody Demande demande)
  {
  try
  {
@@ -43,22 +46,22 @@ private AgenceRepository agenceRepository;
  /* ajout traitement spécial :
   * setDateCreate setCreatedBy
   * */
- agence.setDateOp(LocalDateTime.now());
- agence.setUtil("admin");
- agence.setOp("A"); // D,E
- agence= agenceRepository.save(agence);
+ demande.setDateOp(LocalDateTime.now());
+ demande.setUtil("admin");
+ demande.setOp("A"); // D,E
+ demande= demandeRepository.save(demande);
  }
  catch(Exception e)
  {
  
  }
- return agence;
+ return demande;
  }
  
  
  
- @PutMapping("/agence")
- public Agence editAgence(@RequestBody Agence agence)
+ @PutMapping("/demande")
+ public Demande editDemande(@RequestBody Demande demande)
  {
  try
  {
@@ -66,26 +69,26 @@ private AgenceRepository agenceRepository;
  /* ajout traitement spécial :
   * setDateCreate setCreatedBy
   * */
- agence.setDateOp(LocalDateTime.now());
- agence.setUtil("admin");
- agence.setOp("E"); // D,E
- agence= agenceRepository.save(agence);
+ demande.setDateOp(LocalDateTime.now());
+ demande.setUtil("admin");
+ demande.setOp("E"); // D,E
+ demande=demandeRepository.save(demande);
  }
  catch(Exception e)
  {
  
  }
- return agence;
+ return demande;
  }
  
  
  
- @GetMapping("/agence/{id}")
- public Agence getAgence(@PathVariable("id") Long id)
+ @GetMapping("/demande/{id}")
+ public Demande getDemande(@PathVariable("id") Long id)
  {
  try
  {
- return agenceRepository.findById(id).get();
+ return demandeRepository.findById(id).get();
  }
  catch(Exception e)
  {
@@ -95,12 +98,12 @@ private AgenceRepository agenceRepository;
  }
  
  
- @GetMapping("/agence")
- public List<Agence> getAllAgences()
+ @GetMapping("/demande")
+ public List<Demande> getAllDemandes()
  {
  try
  {
- return agenceRepository.findAll(); // SELECT * FROM agence
+ return demandeRepository.findAll(); // SELECT * FROM agence
  }
  catch(Exception e)
  {
@@ -115,17 +118,17 @@ private AgenceRepository agenceRepository;
  
  
  
- @DeleteMapping("/agence/{id}")
- public boolean deleteAgence(@PathVariable("id") Long id)
+ @DeleteMapping("/demande/{id}")
+ public boolean deleteDemande(@PathVariable("id") Long id)
  {
  try
  {
- Agence agence= agenceRepository.findById(id).get();
+ Demande demande= demandeRepository.findById(id).get();
 
- agence.setDateOp(LocalDateTime.now());
- agence.setUtil("admin");
- agence.setOp("D"); // D,E
- agenceRepository.delete(agence);
+ demande.setDateOp(LocalDateTime.now());
+ demande.setUtil("admin");
+ demande.setOp("D"); // D,E
+ demandeRepository.delete(demande);
  return true;
  }
  catch(Exception e)

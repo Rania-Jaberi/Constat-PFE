@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.siga.constat.domain.ConducteurVoiture;
 @Repository
-public interface ConducteurVoitureRepository extends JpaRepository <ConducteurVoiture , String> {
+public interface ConducteurVoitureRepository extends JpaRepository <ConducteurVoiture,Long> {
 
 }
