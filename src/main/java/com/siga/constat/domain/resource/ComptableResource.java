@@ -1,6 +1,7 @@
 package com.siga.constat.domain.resource;
 
 import java.time.LocalDateTime;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,16 +14,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.siga.constat.domain.Agence;
-import com.siga.constat.domain.repository.AgenceRepository;
+
+
+import com.siga.constat.domain.Comptable;
+import com.siga.constat.domain.repository.ComptableRepository;
 
 @RestController
 @RequestMapping("/api")
-public class AgenceResource {
+public class ComptableResource {
 
 
 @Autowired
-private AgenceRepository agenceRepository;
+private ComptableRepository comptableRepository;
+
 
 
 /*
@@ -34,8 +38,8 @@ private AgenceRepository agenceRepository;
 * */
 
 
- @PostMapping("/agence")
- public Agence addAgence(@RequestBody Agence agence)
+ @PostMapping("/comptable")
+ public Comptable addComptable(@RequestBody Comptable comptable)
  {
  try
  {
@@ -43,22 +47,22 @@ private AgenceRepository agenceRepository;
  /* ajout traitement spécial :
   * setDateCreate setCreatedBy
   * */
- agence.setDateOp(LocalDateTime.now());
- agence.setUtil("admin");
- agence.setOp("A"); // D,E
- agence= agenceRepository.save(agence);
+	 comptable.setDateOp(LocalDateTime.now());
+	 comptable.setUtil("admin");
+	 comptable.setOp("A"); // D,E
+	 comptable= comptableRepository.save(comptable);
  }
  catch(Exception e)
  {
  
  }
- return agence;
+ return comptable;
  }
  
  
  
- @PutMapping("/agence")
- public Agence editAgence(@RequestBody Agence agence)
+ @PutMapping("/comptable")
+ public Comptable editComptable(@RequestBody Comptable comptable)
  {
  try
  {
@@ -66,26 +70,25 @@ private AgenceRepository agenceRepository;
  /* ajout traitement spécial :
   * setDateCreate setCreatedBy
   * */
- agence.setDateOp(LocalDateTime.now());
- agence.setUtil("admin");
- agence.setOp("E"); // D,E
- agence= agenceRepository.save(agence);
+	 comptable.setUtil("admin");
+	 comptable.setOp("E"); // D,E
+	 comptable= comptableRepository.save(comptable);
  }
  catch(Exception e)
  {
  
  }
- return agence;
+ return comptable;
  }
  
  
  
- @GetMapping("/agence/{id}")
- public Agence getAgence(@PathVariable("id") Long id)
+ @GetMapping("/comptable/{id}")
+ public Comptable getComptable(@PathVariable("id") Long id)
  {
  try
  {
- return agenceRepository.findById(id).get();
+ return comptableRepository.findById(id).get();
  }
  catch(Exception e)
  {
@@ -95,12 +98,12 @@ private AgenceRepository agenceRepository;
  }
  
  
- @GetMapping("/agence")
- public List<Agence> getAllAgences()
+ @GetMapping("/comptable")
+ public List< Comptable> getAllComptables()
  {
  try
  {
- return agenceRepository.findAll(); // SELECT * FROM agence
+ return comptableRepository.findAll(); // SELECT * FROM agence
  }
  catch(Exception e)
  {
@@ -115,17 +118,17 @@ private AgenceRepository agenceRepository;
  
  
  
- @DeleteMapping("/agence/{id}")
- public boolean deleteAgence(@PathVariable("id") Long id)
+ @DeleteMapping("/comptable/{id}")
+ public boolean deleteChefAgence(@PathVariable("id") Long id)
  {
  try
  {
- Agence agence= agenceRepository.findById(id).get();
+	 Comptable comptable= comptableRepository.findById(id).get();
 
- agence.setDateOp(LocalDateTime.now());
- agence.setUtil("admin");
- agence.setOp("D"); // D,E
- agenceRepository.delete(agence);
+	 comptable.setDateOp(LocalDateTime.now());
+	 comptable.setUtil("admin");
+	 comptable.setOp("D"); // D,E
+	 comptableRepository.delete(comptable);
  return true;
  }
  catch(Exception e)
@@ -133,11 +136,8 @@ private AgenceRepository agenceRepository;
  
  }
  return false;
- }
+ }}
  
  
  
  
- 
- 
-}

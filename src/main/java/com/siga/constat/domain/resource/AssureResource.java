@@ -1,5 +1,6 @@
 package com.siga.constat.domain.resource;
 
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -13,16 +14,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.siga.constat.domain.Agence;
-import com.siga.constat.domain.repository.AgenceRepository;
+import com.siga.constat.domain.Assure;
+import com.siga.constat.domain.repository.AssureRepository;
 
 @RestController
 @RequestMapping("/api")
-public class AgenceResource {
+public class AssureResource {
 
 
 @Autowired
-private AgenceRepository agenceRepository;
+private AssureRepository assureRepository;
 
 
 /*
@@ -34,8 +35,8 @@ private AgenceRepository agenceRepository;
 * */
 
 
- @PostMapping("/agence")
- public Agence addAgence(@RequestBody Agence agence)
+ @PostMapping("/assure")
+ public Assure addAssure(@RequestBody Assure assure)
  {
  try
  {
@@ -43,22 +44,22 @@ private AgenceRepository agenceRepository;
  /* ajout traitement spécial :
   * setDateCreate setCreatedBy
   * */
- agence.setDateOp(LocalDateTime.now());
- agence.setUtil("admin");
- agence.setOp("A"); // D,E
- agence= agenceRepository.save(agence);
+ assure.setDateOp(LocalDateTime.now());
+ assure.setUtil("admin");
+ assure.setOp("A"); // D,E
+ assure= assureRepository.save(assure);
  }
  catch(Exception e)
  {
  
  }
- return agence;
+ return assure;
  }
  
  
  
- @PutMapping("/agence")
- public Agence editAgence(@RequestBody Agence agence)
+ @PutMapping("/assure")
+ public Assure editAssure(@RequestBody Assure assure)
  {
  try
  {
@@ -66,26 +67,26 @@ private AgenceRepository agenceRepository;
  /* ajout traitement spécial :
   * setDateCreate setCreatedBy
   * */
- agence.setDateOp(LocalDateTime.now());
- agence.setUtil("admin");
- agence.setOp("E"); // D,E
- agence= agenceRepository.save(agence);
+ assure.setDateOp(LocalDateTime.now());
+ assure.setUtil("admin");
+ assure.setOp("E"); // D,E
+ assure= assureRepository.save(assure);
  }
  catch(Exception e)
  {
  
  }
- return agence;
+ return assure;
  }
  
  
  
- @GetMapping("/agence/{id}")
- public Agence getAgence(@PathVariable("id") Long id)
+ @GetMapping("/assure/{id}")
+ public Assure getAssure(@PathVariable("id") Long id)
  {
  try
  {
- return agenceRepository.findById(id).get();
+ return assureRepository.findById(id).get();
  }
  catch(Exception e)
  {
@@ -95,12 +96,12 @@ private AgenceRepository agenceRepository;
  }
  
  
- @GetMapping("/agence")
- public List<Agence> getAllAgences()
+ @GetMapping("/assure")
+ public List<Assure> getAllAssures()
  {
  try
  {
- return agenceRepository.findAll(); // SELECT * FROM agence
+ return assureRepository.findAll(); // SELECT * FROM assure
  }
  catch(Exception e)
  {
@@ -115,17 +116,17 @@ private AgenceRepository agenceRepository;
  
  
  
- @DeleteMapping("/agence/{id}")
- public boolean deleteAgence(@PathVariable("id") Long id)
+ @DeleteMapping("/assure/{id}")
+ public boolean deleteAssure(@PathVariable("id") Long id)
  {
  try
  {
- Agence agence= agenceRepository.findById(id).get();
+ Assure assure= assureRepository.findById(id).get();
 
- agence.setDateOp(LocalDateTime.now());
- agence.setUtil("admin");
- agence.setOp("D"); // D,E
- agenceRepository.delete(agence);
+ assure.setDateOp(LocalDateTime.now());
+ assure.setUtil("admin");
+ assure.setOp("D"); // D,E
+ assureRepository.delete(assure);
  return true;
  }
  catch(Exception e)
@@ -140,4 +141,5 @@ private AgenceRepository agenceRepository;
  
  
  
+
 }
