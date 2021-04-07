@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @SuppressWarnings({ "serial", "unused" })
 @Entity
 @DiscriminatorValue("Ca")
-public class Constatamiable implements Serializable {
+public class ConstatAmiable implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
